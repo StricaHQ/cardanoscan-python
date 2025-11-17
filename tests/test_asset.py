@@ -27,7 +27,7 @@ def test_get_asset_details(client):
         return_value=httpx.Response(200, json=mock_response)
     )
 
-    data = client.get_asset_details(params=params)
+    data = client.get_asset_details_sync(params=params)
 
     assert data["assetId"] == mock_response["assetId"]
     assert data["totalSupply"] == mock_response["totalSupply"]
@@ -66,7 +66,7 @@ def test_get_assets_by_policy_id(client):
         return_value=httpx.Response(200, json=mock_response)
     )
 
-    data = client.get_assets_by_policy_id(params=params)
+    data = client.get_assets_by_policy_id_sync(params=params)
 
     assert data["count"] == 2
     assert data["tokens"][0]["assetId"] == "abcd1234.token1"
@@ -89,7 +89,7 @@ def test_get_assets_by_address(client):
         return_value=httpx.Response(200, json=mock_response)
     )
 
-    data = client.get_assets_by_address(params=params)
+    data = client.get_assets_by_address_sync(params=params)
 
     assert data["count"] == 2
     assert data["tokens"][0]["unit"] == "token1"
@@ -112,7 +112,7 @@ def test_get_asset_holders_by_policy_id(client):
         return_value=httpx.Response(200, json=mock_response)
     )
 
-    data = client.get_asset_holders_by_policy_id(params=params)
+    data = client.get_asset_holders_by_policy_id_sync(params=params)
 
     assert data["count"] == 2
     assert data["holders"][0]["address"] == "addr1"
@@ -135,7 +135,7 @@ def test_get_asset_holders_by_asset_id(client):
         return_value=httpx.Response(200, json=mock_response)
     )
 
-    data = client.get_asset_holders_by_asset_id(params=params)
+    data = client.get_asset_holders_by_asset_id_sync(params=params)
 
     assert data["count"] == 2
     assert data["holders"][1]["balance"] == "50"

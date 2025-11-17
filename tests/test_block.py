@@ -19,7 +19,7 @@ def test_get_block_details(client):
         return_value=httpx.Response(200, json=mock_response)
     )
 
-    data = client.get_block_details(params=params)
+    data = client.get_block_details_sync(params=params)
     assert data["hash"] == mock_response["hash"]
     assert data["blockHeight"] == mock_response["blockHeight"]
 
@@ -32,6 +32,6 @@ def test_get_latest_block_details(client):
         return_value=httpx.Response(200, json=mock_response)
     )
 
-    data = client.get_latest_block_details()
+    data = client.get_latest_block_details_sync()
     assert data["hash"] == mock_response["hash"]
     assert data["blockHeight"] == mock_response["blockHeight"]

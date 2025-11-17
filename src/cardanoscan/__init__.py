@@ -157,12 +157,30 @@ class Cardanoscan:
 
     # import endpoint functions
     from .apis.address import get_address_balance, get_address_balance_sync
+
     from .apis.assets import (
         get_asset_details,
+        get_asset_details_sync,
         get_assets_by_policy_id,
+        get_assets_by_policy_id_sync,
         get_assets_by_address,
+        get_assets_by_address_sync,
         get_asset_holders_by_policy_id,
+        get_asset_holders_by_policy_id_sync,
         get_asset_holders_by_asset_id,
+        get_asset_holders_by_asset_id_sync,
     )
-    from .apis.block import get_block_details, get_latest_block_details
-    from .apis.network import get_network_details, get_network_protocol_details
+
+    from .apis.block import (
+        get_block_details,
+        get_block_details_sync,
+        get_latest_block_details,
+        get_latest_block_details_sync,
+    )
+
+    from .apis.network import (
+        get_network_details,
+        get_network_details_sync,
+        get_network_protocol_details,
+        get_network_protocol_details_sync,
+    )

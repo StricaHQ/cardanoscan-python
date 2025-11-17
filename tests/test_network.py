@@ -23,7 +23,7 @@ def test_get_network_details(client):
         return_value=httpx.Response(200, json=mock_response)
     )
 
-    data = client.get_network_details()
+    data = client.get_network_details_sync()
     assert data["circulatingSupply"] == mock_response["circulatingSupply"]
     assert data["reserves"] == mock_response["reserves"]
     assert data["treasury"] == mock_response["treasury"]
@@ -43,7 +43,7 @@ def test_get_network_protocol_details(client):
         return_value=httpx.Response(200, json=mock_response)
     )
 
-    data = client.get_network_protocol_details()
+    data = client.get_network_protocol_details_sync()
 
     assert data["minFeeA"] == mock_response["minFeeA"]
     assert data["minFeeB"] == mock_response["minFeeB"]
