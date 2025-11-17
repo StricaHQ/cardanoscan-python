@@ -5,18 +5,30 @@ import asyncio
 import logging
 
 from .config import BaseConfig
-from .exceptions import TransportError, HTTPStatusError, AuthenticationError, RateLimitError, TimeoutError
+from .exceptions import (
+    TransportError,
+    HTTPStatusError,
+    AuthenticationError,
+    RateLimitError,
+    TimeoutError,
+)
 from .utils import safe_json, build_url
 
 
 logger = logging.getLogger(__name__)
 
+
 class Cardanoscan:
     def __init__(self, api_key: str):
         self._config = BaseConfig(api_key=api_key)
-        self._async_client = httpx.AsyncClient(base_url=self._config.base_url, timeout=self._config.timeout)
-        self._sync_client = httpx.Client(base_url=self._config.base_url, timeout=self._config.timeout)
+        self._async_client = httpx.AsyncClient(
+            base_url=self._config.base_url, timeout=self._config.timeout
+        )
+        self._sync_client = httpx.Client(
+            base_url=self._config.base_url, timeout=self._config.timeout
+        )
         self._closed = False
+
     # lifecycle helpers
     async def aclose(self) -> None:
         if not self._closed:
@@ -44,7 +56,9 @@ class Cardanoscan:
                 else:
                     asyncio.run(self._async_client.aclose())
             except Exception:
-                logger.debug("Failed to synchronously close async client", exc_info=True)
+                logger.debug(
+                    "Failed to synchronously close async client", exc_info=True
+                )
             try:
                 self._sync_client.close()
             except Exception:
@@ -61,6 +75,7 @@ class Cardanoscan:
     @property
     def base_url(self) -> str:
         return self._config.base_url
+
     # core request implementations
     async def _do_request_async(
         self,
@@ -80,7 +95,12 @@ class Cardanoscan:
             merged_headers.update(headers)
         try:
             resp = await self._async_client.request(
-                method, url, params=params, json=json, headers=merged_headers, timeout=timeout or self._config.timeout
+                method,
+                url,
+                params=params,
+                json=json,
+                headers=merged_headers,
+                timeout=timeout or self._config.timeout,
             )
         except httpx.ReadTimeout:
             raise TimeoutError("Request timed out")
@@ -114,7 +134,12 @@ class Cardanoscan:
             merged_headers.update(headers)
         try:
             resp = self._sync_client.request(
-                method, url, params=params, json=json, headers=merged_headers, timeout=timeout or self._config.timeout
+                method,
+                url,
+                params=params,
+                json=json,
+                headers=merged_headers,
+                timeout=timeout or self._config.timeout,
             )
         except httpx.ReadTimeout:
             raise TimeoutError("Request timed out")
@@ -132,3 +157,12 @@ class Cardanoscan:
 
     # import endpoint functions
     from .apis.address import get_address_balance, get_address_balance_sync
+    from .apis.assets import (
+        get_asset_details,
+        get_assets_by_policy_id,
+        get_assets_by_address,
+        get_asset_holders_by_policy_id,
+        get_asset_holders_by_asset_id,
+    )
+    from .apis.block import get_block_details, get_latest_block_details
+    from .apis.network import get_network_details, get_network_protocol_details
