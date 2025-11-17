@@ -129,3 +129,6 @@ class Cardanoscan:
                 raise RateLimitError(body or resp.text)
             raise HTTPStatusError(resp.status_code, resp.text, body)
         return safe_json(resp)
+
+    # import endpoint functions
+    from .apis.address import get_address_balance, get_address_balance_sync
