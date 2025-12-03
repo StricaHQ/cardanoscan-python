@@ -184,3 +184,34 @@ class Cardanoscan:
         get_network_protocol_details,
         get_network_protocol_details_sync,
     )
+
+    from .apis.pool import (
+        get_pool_details,
+        get_pool_details_sync,
+        get_pool_stats,
+        get_pool_stats_sync,
+        get_pools,
+        get_pools_sync,
+        get_expiring_pools,
+        get_expiring_pools_sync,
+        get_expired_pools,
+        get_expired_pools_sync,
+    )
+
+    from .apis.reward_account import (
+        get_stake_key_details,
+        get_stake_key_details_sync,
+        get_addresses_by_stake_key,
+        get_addresses_by_stake_key_sync,
+    )
+
+    from .apis.transaction import (
+        get_transaction_details,
+        get_transaction_details_sync,
+        get_transaction_list_by_address,
+        get_transaction_list_by_address_sync,
+        post_submit_transaction,
+        post_submit_transaction_sync,
+        get_transaction_summary,
+        get_transaction_summary_sync,
+    )
