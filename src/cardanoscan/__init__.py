@@ -169,6 +169,8 @@ class Cardanoscan:
         get_asset_holders_by_policy_id_sync,
         get_asset_holders_by_asset_id,
         get_asset_holders_by_asset_id_sync,
+        get_assets_metadata,
+        get_assets_metadata_sync,
     )
 
     from .apis.block import (
@@ -176,6 +178,23 @@ class Cardanoscan:
         get_block_details_sync,
         get_latest_block_details,
         get_latest_block_details_sync,
+    )
+
+    from .apis.governance import (
+        get_cc_hot_details,
+        get_cc_hot_details_sync,
+        get_cc_member_details,
+        get_cc_member_details_sync,
+        get_committee_information,
+        get_committee_information_sync,
+        get_committee_members,
+        get_committee_members_sync,
+        get_drep_information,
+        get_drep_information_sync,
+        get_dreps,
+        get_dreps_sync,
+        get_governance_action,
+        get_governance_action_sync,
     )
 
     from .apis.network import (
@@ -205,6 +224,11 @@ class Cardanoscan:
         get_addresses_by_stake_key_sync,
     )
 
+    from .apis.stats import (
+        get_stats_daily_tx_fee,
+        get_stats_daily_tx_fee_sync,
+    )
+
     from .apis.transaction import (
         get_transaction_details,
         get_transaction_details_sync,
@@ -214,4 +238,13 @@ class Cardanoscan:
         post_submit_transaction_sync,
         get_transaction_summary,
         get_transaction_summary_sync,
+    )
+
+    from .apis.utxo import get_utxo_list, get_utxo_list_sync
+
+    from .apis.votes import (
+        get_votes_by_voter,
+        get_votes_by_voter_sync,
+        get_votes_by_action,
+        get_votes_by_action_sync,
     )
