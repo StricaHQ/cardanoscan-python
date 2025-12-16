@@ -1,6 +1,5 @@
 from typing import Any, Dict, Optional
 
-
 async def get_pool_details(self, params: Optional[Dict] = None) -> Any:
     path = "/pool"
     return await self._do_request_async("GET", path, params=params)
