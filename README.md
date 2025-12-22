@@ -9,7 +9,9 @@ Cardanoscan API Service Python SDK
 
 # Installation
 
-TODO
+```sh
+python3 -m pip install cardanoscan-python
+```
 
 # Development
 
