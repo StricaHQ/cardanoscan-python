@@ -9,7 +9,7 @@ Repository = "https://github.com/StricaHQ/cardanoscan-python"
 
 [project]
 name = "cardanoscan-python"
-version = "0.0.1"
+version = "0.0.2"
 description = "Python SDK for Cardanoscan API"
 authors = []
 readme = "README.md"
